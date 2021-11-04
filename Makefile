@@ -6,7 +6,7 @@
 #    By: gchanet <gchanet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/01 16:32:21 by gchanet           #+#    #+#              #
-#    Updated: 2021/11/02 07:15:47 by gchanet          ###   ########lyon.fr    #
+#    Updated: 2021/11/03 13:34:06 by gchanet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,16 @@ GRN 		= \033[0;32m
 RED 		= \033[0;31m
 RST 		= \033[0m
 
-OBLIG_SRC	= ft_printf.c
-BONUS_SRC	= 
-OBLIG_OBJ	= ${OBLIG_SRC:.c=.o}
-BONUS_OBJ	= ${BONUS_SRC:.c=.o}
+SRC			= ft_printf.c
+OBJ			= ${SRC:.c=.o}
+
+SRC_TESTER	= test.c
+OBJ_TESTER	= ${SRC_TESTER:.c=.o}
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror -I.
-NAME		= libft.a
+CLIBFT		= -L./libft/ -lft
+NAME		= ft_printf
 
 all: ${NAME}
 
@@ -30,22 +32,21 @@ all: ${NAME}
 	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 	@echo "${BLU}[BUILD]${RST} ${<:.c=.o}"
 
-${NAME}: ${OBJ}
-	@ar rcs $(NAME) $(OBJ)
-	@ranlib $(NAME)
+${NAME}: ${OBJ} ./includes/ft_printf.h
 	@echo "${GRN}[DONE]${RST} $(NAME) has created"
 
 clean:
-	@rm -f ${OBJ} ${OBJB}
+	@rm -f ${OBJ} 
 	@echo "${GRN}[CLEAN]${RST} done"
 
 fclean: clean
 	@rm -f ${NAME}
 	@echo "${GRN}[FCLEAN]${RST} done"
 
-bonus: ${NAME} ${OBJ} ${OBJB}
-	@ar rcs $(NAME) $(OBJ) $(OBJB)
-	@ranlib $(NAME)
-	@echo "${GRN}[DONE]${RST} $(NAME) with bonus has created"
+test: 
+	@${CC} ${CFLAGS} -c *.c
+	@${CC} ${CFLAGS} *.o -L ./libft -l ft -o ${NAME}
+	@${CC} ${CFLAGS} ${OBJ} ${OBJ_TESTER} ${CLIBFT} -o tester
+	@./tester
 
 re: fclean all
