@@ -6,30 +6,12 @@
 /*   By: gchanet <gchanet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 07:08:07 by gchanet           #+#    #+#             */
-/*   Updated: 2021/11/03 16:57:23 by gchanet          ###   ########.fr       */
+/*   Updated: 2021/11/04 07:12:24 by gchanet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "ft_printf.h"
 # include "stdio.h"
-
-int	ft_nbrlen(int nbr)
-{
-	int	len;
-
-	len = 0;
-	if (nbr <= 0)
-	{
-		len++;
-		nbr = -nbr;
-	}
-	while (nbr != 0)
-	{
-		nbr /= 10;
-		len++;
-	}
-	return (len);
-}
 
 void	ft_print_int(int val, t_va_opt opt)
 {

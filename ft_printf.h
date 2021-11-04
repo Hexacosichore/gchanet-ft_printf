@@ -6,7 +6,7 @@
 /*   By: gchanet <gchanet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 07:07:53 by gchanet           #+#    #+#             */
-/*   Updated: 2021/11/03 16:24:47 by gchanet          ###   ########.fr       */
+/*   Updated: 2021/11/04 07:07:16 by gchanet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,8 @@ typedef struct s_printf
 	va_list			ap;
 	t_va_opt		opt;
 }			t_printf;
+
+/*	utils	*/
+int	ft_nbrlen(int nbr);
 
 #endif
